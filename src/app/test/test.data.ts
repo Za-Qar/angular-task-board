@@ -64,6 +64,20 @@ export class TaskTestData {
 
   static readonly state = TaskTestData.createLoadedState();
 
+  static createTask(overrides: Partial<ITask> = {}): ITask {
+  return {
+    id: TaskTestData.task1Id,
+    title: 'Implement task card',
+    columnId: TaskTestData.columnTodoId,
+    priorityLevel: PriorityLevel.HIGH,
+    timestamp: {
+      createdAt: new Date('2026-03-01T10:00:00.000Z').toISOString(),
+      updatedAt: new Date('2026-03-01T10:00:00.000Z').toISOString(),
+    },
+    ...overrides,
+  };
+}
+
   private static createLoadedState() {
     return tasksReducer(
       initialTasksState,

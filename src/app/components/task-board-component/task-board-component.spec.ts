@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { describe, expect, it, vi } from 'vitest';
 
 import { PriorityLevel } from '../../models/priority.level.enum';
-import { ITask } from '../../models/task.model';
 import { TasksActions } from '../../store/tasks/tasks.actions';
 import { tasksFeature } from '../../store/tasks/tasks.reducer';
 import {
@@ -14,36 +13,18 @@ import {
   selectTaskCountByPriority,
 } from '../../store/tasks/tasks.selectors';
 import { TaskBoardComponent } from './task-board-component';
-
-const mockTasks: ITask[] = [
-  {
-    id: 'task-1',
-    title: 'Task 1',
-    columnId: 'col-todo',
-    priorityLevel: PriorityLevel.HIGH,
-    timestamp: {
-      createdAt: new Date('2026-03-01T10:00:00.000Z').toISOString(),
-      updatedAt: new Date('2026-03-01T10:00:00.000Z').toISOString(),
-    },
-  },
-];
-
-const mockColumns = [
-  { id: 'col-todo', name: 'Todo', order: 1 },
-  { id: 'col-doing', name: 'Doing', order: 2 },
-  { id: 'col-done', name: 'Done', order: 3 },
-];
+import { TaskTestData } from '../../test/test.data';
 
 function createStoreMock() {
   return {
     dispatch: vi.fn(),
     selectSignal: vi.fn((selector: unknown) => {
       if (selector === selectAllTasks) {
-        return signal(mockTasks);
+        return signal(TaskTestData.tasks);
       }
 
       if (selector === tasksFeature.selectColumns) {
-        return signal(mockColumns);
+        return signal(TaskTestData.columns);
       }
 
       if (selector === tasksFeature.selectLoading) {
@@ -90,15 +71,15 @@ describe('TaskBoardComponent', () => {
 
     component.onMoveRequested({
       taskId: 'task-1',
-      fromColumnId: 'col-todo',
-      toColumnId: 'col-doing',
+      fromColumnId: TaskTestData.columnTodoId,
+      toColumnId: TaskTestData.columnDoingId,
     });
 
     expect(storeMock.dispatch).toHaveBeenCalledWith(
       TasksActions.moveTask({
         taskId: 'task-1',
-        fromColumnId: 'col-todo',
-        toColumnId: 'col-doing',
+        fromColumnId: TaskTestData.columnTodoId,
+        toColumnId: TaskTestData.columnDoingId,
       })
     );
   });
