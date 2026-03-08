@@ -1,8 +1,8 @@
 import { PriorityLevel } from './priority.level.enum';
 
 interface ITimestamp {
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ITask {
