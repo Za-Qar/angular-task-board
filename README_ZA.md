@@ -63,3 +63,20 @@ Source:
 - NgRx Action Groups: https://ngrx.io/guide/store/actions#action-groups
 - Optimistic Offline Lock (Martin Fowler): https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html
 - Pessimistic Offline Lock (Martin Fowler): https://martinfowler.com/eaaCatalog/pessimisticOfflineLock.html
+
+---
+
+## Feature 3 - Signals + Component Integration
+
+- Added `TaskBoardComponent` as the smart/container component using `store.selectSignal(...)` to bridge NgRx state into signals.
+- Added `TaskCardComponent` as a presentational component with `@Input/@Output`, local UI signals, computed priority/date display, and overdue logic.
+- Implemented task move from card to store action (`moveRequested` -> `moveTask`) via select-box column change.
+- Replaced the starter app view with the task board and added/updated tests around component behavior.
+
+---
+
+## AI Used
+
+- AI assistance was used mainly for SCSS and test scaffolding/refinement, and also for some suggestions and reviews.
+- This ReadMe document - but the AI was told roughly what to write and how to explain.
+- Ideation, final implementation choices, requirement mapping, and code adjustments were manually reviewed and edited.

@@ -6,10 +6,14 @@ import { tasksReducer } from '../store/tasks/tasks.reducer';
 import { initialTasksState } from '../store/tasks/tasks.state';
 
 export class TaskTestData {
+  // Selectors
+  static readonly taskBoardTitleSelector = '#taskBoardTitle';
+
   static readonly task1Id = 'task-1';
   static readonly columnTodoId = 'col-todo';
   static readonly columnDoingId = 'col-doing';
   static readonly serverMoveError = 'Server move failed.';
+
 
   static readonly columns: IColumn[] = [
     { id: TaskTestData.columnTodoId, name: 'Todo', order: 1 },
@@ -59,6 +63,20 @@ export class TaskTestData {
   };
 
   static readonly state = TaskTestData.createLoadedState();
+
+  static createTask(overrides: Partial<ITask> = {}): ITask {
+  return {
+    id: TaskTestData.task1Id,
+    title: 'Implement task card',
+    columnId: TaskTestData.columnTodoId,
+    priorityLevel: PriorityLevel.HIGH,
+    timestamp: {
+      createdAt: new Date('2026-03-01T10:00:00.000Z').toISOString(),
+      updatedAt: new Date('2026-03-01T10:00:00.000Z').toISOString(),
+    },
+    ...overrides,
+  };
+}
 
   private static createLoadedState() {
     return tasksReducer(
