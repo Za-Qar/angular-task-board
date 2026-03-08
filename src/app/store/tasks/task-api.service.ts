@@ -142,6 +142,7 @@ export class TaskApiService {
 // Created with the help of ChatGPT based on the provided models and selectors, simulating a backend API with in-memory data and latency.
 function createMockDatabase(): MockDatabase {
   const now = new Date().toISOString();
+  const eightDaysAgo = new Date(Date.now() - 691200000).toISOString();
 
   const columns: IColumn[] = [
     { id: 'col-todo', name: 'Todo', order: 1 },
@@ -170,7 +171,7 @@ function createMockDatabase(): MockDatabase {
       columnId: 'col-done',
       title: 'Draft README notes',
       priorityLevel: PriorityLevel.LOW,
-      timestamp: { createdAt: now, updatedAt: now },
+      timestamp: { createdAt: eightDaysAgo, updatedAt: eightDaysAgo },
       description: 'Capture architecture and trade-offs.',
     },
     'task-4': {
@@ -178,7 +179,7 @@ function createMockDatabase(): MockDatabase {
       columnId: 'col-todo',
       title: 'Build selectors',
       priorityLevel: PriorityLevel.MEDIUM,
-      timestamp: { createdAt: now, updatedAt: now },
+      timestamp: { createdAt: eightDaysAgo, updatedAt: eightDaysAgo },
     },
   };
 
@@ -192,3 +193,4 @@ function createMockDatabase(): MockDatabase {
     tasks,
   };
 }
+
