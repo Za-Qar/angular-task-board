@@ -6,10 +6,14 @@ import { tasksReducer } from '../store/tasks/tasks.reducer';
 import { initialTasksState } from '../store/tasks/tasks.state';
 
 export class TaskTestData {
+  // Selectors
+  static readonly taskBoardTitleSelector = '#taskBoardTitle';
+
   static readonly task1Id = 'task-1';
   static readonly columnTodoId = 'col-todo';
   static readonly columnDoingId = 'col-doing';
   static readonly serverMoveError = 'Server move failed.';
+
 
   static readonly columns: IColumn[] = [
     { id: TaskTestData.columnTodoId, name: 'Todo', order: 1 },

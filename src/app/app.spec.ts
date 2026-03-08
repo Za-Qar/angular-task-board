@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { TaskTestData } from './test/test.data';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -20,6 +21,8 @@ describe('App', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('#taskBoardTitle')?.textContent).toContain('Task Board');
+    expect(compiled.querySelector(TaskTestData.taskBoardTitleSelector)?.textContent).toContain(
+      'Task Board',
+    );
   });
 });
