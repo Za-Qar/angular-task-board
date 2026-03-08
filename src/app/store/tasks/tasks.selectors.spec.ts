@@ -2,7 +2,6 @@ import '@angular/compiler';
 
 import { describe, expect, it } from 'vitest';
 
-import { IColumn } from '../../models/column.model';
 import { PriorityLevel } from '../../models/priority.level.enum';
 import { TasksActions } from './tasks.actions';
 import { tasksReducer } from './tasks.reducer';
@@ -13,12 +12,6 @@ import {
 } from './tasks.selectors';
 import { initialTasksState } from './tasks.state';
 import { TaskTestData } from '../../test/test.data';
-
-const columns: IColumn[] = [
-  { id: 'col-todo', name: 'Todo', order: 1 },
-  { id: 'col-doing', name: 'Doing', order: 2 },
-  { id: 'col-done', name: 'Done', order: 3 },
-];
 
 function createRootState() {
   const tasksState = tasksReducer(

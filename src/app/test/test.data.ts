@@ -10,11 +10,10 @@ export class TaskTestData {
   static readonly columnTodoId = 'col-todo';
   static readonly columnDoingId = 'col-doing';
   static readonly serverMoveError = 'Server move failed.';
-  static readonly state = this.createLoadedState();
 
   static readonly columns: IColumn[] = [
-    { id: this.columnTodoId, name: 'Todo', order: 1 },
-    { id: this.columnDoingId, name: 'Doing', order: 2 },
+    { id: TaskTestData.columnTodoId, name: 'Todo', order: 1 },
+    { id: TaskTestData.columnDoingId, name: 'Doing', order: 2 },
     { id: 'col-done', name: 'Done', order: 3 },
   ];
 
@@ -22,42 +21,44 @@ export class TaskTestData {
 
   static readonly tasks: ITask[] = [
     {
-      id: this.task1Id,
+      id: TaskTestData.task1Id,
       title: 'Task 1',
-      columnId: this.columnTodoId,
+      columnId: TaskTestData.columnTodoId,
       priorityLevel: PriorityLevel.HIGH,
-      timestamp: { createdAt: this.now, updatedAt: this.now },
+      timestamp: { createdAt: TaskTestData.now, updatedAt: TaskTestData.now },
     },
     {
       id: 'task-2',
       title: 'Task 2',
       columnId: 'col-done',
       priorityLevel: PriorityLevel.LOW,
-      timestamp: { createdAt: this.now, updatedAt: this.now },
+      timestamp: { createdAt: TaskTestData.now, updatedAt: TaskTestData.now },
     },
     {
       id: 'task-3',
       title: 'Task 3',
-      columnId: this.columnDoingId,
+      columnId: TaskTestData.columnDoingId,
       priorityLevel: PriorityLevel.CRITICAL,
-      timestamp: { createdAt: this.now, updatedAt: this.now },
+      timestamp: { createdAt: TaskTestData.now, updatedAt: TaskTestData.now },
     },
     {
       id: 'task-4',
       title: 'Task 4',
-      columnId: this.columnDoingId,
+      columnId: TaskTestData.columnDoingId,
       priorityLevel: PriorityLevel.MEDIUM,
-      timestamp: { createdAt: this.now, updatedAt: this.now },
+      timestamp: { createdAt: TaskTestData.now, updatedAt: TaskTestData.now },
     },
   ];
 
   static readonly mockTask: ITask = {
-    id: this.task1Id,
+    id: TaskTestData.task1Id,
     title: 'Task 1',
-    columnId: this.columnTodoId,
+    columnId: TaskTestData.columnTodoId,
     priorityLevel: PriorityLevel.HIGH,
-    timestamp: { createdAt: this.now, updatedAt: this.now },
+    timestamp: { createdAt: TaskTestData.now, updatedAt: TaskTestData.now },
   };
+
+  static readonly state = TaskTestData.createLoadedState();
 
   private static createLoadedState() {
     return tasksReducer(
