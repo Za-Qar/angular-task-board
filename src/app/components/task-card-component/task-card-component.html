@@ -1,0 +1,75 @@
+@let task = currentTask();
+
+<div
+  class="task-card-container"
+  [ngClass]="priorityClass()"
+  [class.is-overdue]="isOverdue()"
+  [id]="'taskCardContainer' + (task?.id ?? '')"
+>
+  <div class="task-card" [id]="'taskCard' + (task?.id ?? '')">
+    <div class="task-card-header" [id]="'taskCardHeader' + (task?.id ?? '')">
+      <h3>{{ task?.title }}</h3>
+      <div class="task-card-actions">
+        <button
+          [id]="'expandTaskBtn' + (task?.id ?? '')"
+          (click)="toggleExpanded()"
+        >
+          {{ isExpanded() ? 'Collapse' : 'Expand' }}
+        </button>
+        <button
+          [id]="'moveTaskBtn' + (task?.id ?? '')"
+          (click)="startEdit()"
+        >
+          Move
+        </button>
+      </div>
+    </div>
+
+    <p class="task-card-meta" [id]="'taskCardMeta' + (task?.id ?? '')">
+      <strong>Updated:</strong> {{ formattedUpdatedAt() }}
+    </p>
+
+    @if (isExpanded()) {
+      <div class="task-card-details" [id]="'taskCardDetails' + (task?.id ?? '')">
+        <p><strong>Created:</strong> {{ formattedCreatedAt() }}</p>
+        <p><strong>Description:</strong> {{ task?.description || 'No description' }}</p>
+        <p><strong>Assignee:</strong> {{ task?.assignee || 'Unassigned' }}</p>
+        @if (isOverdue()) {
+          <p class="task-card-stale-note">Overdue: updated over 7 days ago.</p>
+        }
+      </div>
+    }
+
+    <div
+      *ngIf="isEditing()"
+      class="task-card-editor"
+      [id]="'taskCardEditor' + (task?.id ?? '')"
+    >
+      <label [for]="'columnSelect' + (task?.id ?? '')">Move to column</label>
+      <select
+        [id]="'columnSelect' + (task?.id ?? '')"
+        [value]="selectedColumnId()"
+        (change)="onColumnChange($event)"
+      >
+        <option *ngFor="let column of availableColumns" [value]="column.id">
+          {{ column.name }}
+        </option>
+      </select>
+
+      <div class="task-card-editor-actions">
+        <button
+          [id]="'saveMoveBtn' + (task?.id ?? '')"
+          (click)="submitMove()"
+        >
+          Save
+        </button>
+        <button
+          [id]="'cancelMoveBtn' + (task?.id ?? '')"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

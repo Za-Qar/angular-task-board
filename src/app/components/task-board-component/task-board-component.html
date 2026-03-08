@@ -1,0 +1,41 @@
+<section class="task-board-container" id="taskBoardContainer">
+  <header class="task-board-header" id="taskBoardHeader">
+    <h1 id="taskBoardTitle">Task Board</h1>
+
+    @if (loading()) {
+      <p id="taskBoardLoading">Loading tasks...</p>
+    }
+
+    @if (error()) {
+      <p class="task-board-error" id="taskBoardError">{{ error() }}</p>
+    }
+
+    <div class="task-board-stats" id="taskBoardStats">
+      <span>Completion: {{ completionRate() | number: '1.0-0' }}%</span>
+      <span>Low: {{ priorityCounts().Low }}</span>
+      <span>Medium: {{ priorityCounts().Medium }}</span>
+      <span>High: {{ priorityCounts().High }}</span>
+      <span>Critical: {{ priorityCounts().Critical }}</span>
+    </div>
+  </header>
+
+  <div class="task-board-columns" id="taskBoardColumns">
+    @for (columnGroup of columnsWithTasks(); track trackByColumnId($index, columnGroup)) {
+      <section class="task-board-column" [id]="'taskBoardColumn' + columnGroup.column.id">
+        <h2>{{ columnGroup.column.name }} ({{ columnGroup.tasks.length }})</h2>
+
+        <div class="task-board-cards" [id]="'taskBoardCards' + columnGroup.column.id">
+          @for (task of columnGroup.tasks; track trackByTaskId($index, task)) {
+            <app-task-card
+              [task]="task"
+              [availableColumns]="columns()"
+              (moveRequested)="onMoveRequested($event)"
+            />
+          } @empty {
+            <p class="task-board-empty">No tasks in this column.</p>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</section>
