@@ -4,9 +4,6 @@ import { Action } from '@ngrx/store';
 import { Actions } from '@ngrx/effects';
 import { ReplaySubject, firstValueFrom, of, throwError } from 'rxjs';
 import { describe, expect, it, vi } from 'vitest';
-
-import { PriorityLevel } from '../../models/priority.level.enum';
-import { ITask } from '../../models/task.model';
 import { TaskApiService } from './task-api.service';
 import { TasksActions } from './tasks.actions';
 import { TasksEffects } from './tasks.effects';
@@ -14,15 +11,6 @@ import { TasksEffects } from './tasks.effects';
 describe('TasksEffects', () => {
   it('emits moveTaskFailure when moveTask API fails', async () => {
     const actions$ = new ReplaySubject<Action>(1);
-
-    const now = new Date().toISOString();
-    const mockTask: ITask = {
-      id: 'task-1',
-      title: 'Task 1',
-      columnId: 'col-todo',
-      priorityLevel: PriorityLevel.HIGH,
-      timestamp: { createdAt: now, updatedAt: now },
-    };
 
     const taskApiSpy = new TaskApiService();
     vi.spyOn(taskApiSpy, 'moveTask').mockReturnValue(
