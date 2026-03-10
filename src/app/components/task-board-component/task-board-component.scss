@@ -19,6 +19,24 @@
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.task-board-widget-event {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: #344054;
+}
+
+.task-board-filter {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.task-board-filter p {
+  margin: 0;
   font-size: 0.9rem;
 }
 
