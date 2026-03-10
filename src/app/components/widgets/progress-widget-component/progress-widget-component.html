@@ -1,0 +1,13 @@
+<div
+  [class]="'progress-widget-card status-' + status.statusClassName"
+  [attr.title]="status.tooltip"
+>
+  <p class="progress-widget-label">
+    <img [src]="status.icon" [alt]="label + ' icon'" class="progress-widget-icon" />
+    {{ label }}: {{ progressValue }}%
+  </p>
+  <div class="progress-widget-track">
+    <div class="progress-widget-fill" [style.width.%]="progressValue"></div>
+  </div>
+  <button (click)="requestDetails()">Details</button>
+</div>

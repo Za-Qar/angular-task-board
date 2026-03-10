@@ -1,0 +1,8 @@
+<div [class]="'task-widget-card status-' + status.statusClassName" [attr.title]="status.tooltip">
+  <p class="task-widget-label">{{ label }}</p>
+  <p class="task-widget-value">
+    <img [src]="status.icon" [alt]="label + ' icon'" [attr.title]="status.tooltip" class="task-widget-icon" />
+    {{ status.value }}
+  </p>
+  <button (click)="requestDetails()">Details</button>
+</div>

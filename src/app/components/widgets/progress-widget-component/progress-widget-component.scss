@@ -1,0 +1,52 @@
+.progress-widget-card {
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-width: 220px;
+  background: #ffffff;
+}
+
+.progress-widget-label {
+  margin: 0 0 0.5rem;
+  color: #475467;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.progress-widget-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.progress-widget-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #eaecf0;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-widget-fill {
+  height: 100%;
+  background: #1570ef;
+}
+
+.status-success {
+  border-color: #12b76a;
+}
+
+.status-warning {
+  border-color: #f79009;
+}
+
+.status-error {
+  border-color: #f04438;
+}
+
+.status-neutral {
+  border-color: #98a2b3;
+}

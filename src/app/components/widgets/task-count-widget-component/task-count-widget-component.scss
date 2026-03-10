@@ -1,0 +1,44 @@
+.task-widget-card {
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-width: 160px;
+  background: #ffffff;
+}
+
+.task-widget-label {
+  margin: 0;
+  color: #475467;
+  font-size: 0.85rem;
+}
+
+.task-widget-value {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.task-widget-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.status-success {
+  border-color: #12b76a;
+}
+
+.status-warning {
+  border-color: #f79009;
+}
+
+.status-error {
+  border-color: #f04438;
+}
+
+.status-neutral {
+  border-color: #98a2b3;
+}
