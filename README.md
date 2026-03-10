@@ -24,20 +24,20 @@ SSR: not enabled, since it is outside the core requirements and focus was kept o
 ## Feature 1 - Core Data Models (Plan)
 
 - Create `Board`, `Column`, and `Task` as TypeScript interfaces in a shared models area.
-- Use normalized relationships via IDs (for example, `Task.columnId`, `Board.columnIds`) to simplify NGRX updates and selectors.
+- Use normalised relationships via IDs (for example, `Task.columnId`, `Board.columnIds`) to simplify NGRX updates and selectors.
 - Define priority with a strict union/enum of at least four levels.
 - Keep `description` and `assignee` optional; keep `createdAt` and `updatedAt` required.
 
 ### Why Interfaces Over Classes
 
-- NGRX store state is expected to be plain serializable objects; interfaces/types model this cleanly.
+- NGRX store state is expected to be plain serialisable objects; interfaces/types model this cleanly.
 - Classes add runtime behaviour/prototypes that are usually unnecessary for store entities and can conflict with serialisability best practices.
 - If object creation convenience is needed, use typed factory functions that return plain objects.
 
 Source:
 
 - NGRX runtime checks (serialisability): https://ngrx.io/guide/store/configuration/runtime-checks
-- Redux style guide (serializable state/actions): https://redux.js.org/style-guide/#do-not-put-non-serializable-values-in-state-or-actions
+- Redux style guide (serialisable state/actions): https://redux.js.org/style-guide/#do-not-put-non-serialisable-values-in-state-or-actions
 
 ---
 
