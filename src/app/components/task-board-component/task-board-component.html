@@ -11,12 +11,23 @@
     }
 
     <div class="task-board-stats" id="taskBoardStats">
-      <span>Completion: {{ completionRate() | number: '1.0-0' }}%</span>
-      <span>Low: {{ priorityCounts().Low }}</span>
-      <span>Medium: {{ priorityCounts().Medium }}</span>
-      <span>High: {{ priorityCounts().High }}</span>
-      <span>Critical: {{ priorityCounts().Critical }}</span>
+      <ng-container appDynamicWidgetOutlet [widgetConfigs]="widgetConfigs()"></ng-container>
     </div>
+
+    @if (widgetEventMessage()) {
+      <p class="task-board-widget-event" id="taskBoardWidgetEvent">
+        {{ widgetEventMessage() }}
+      </p>
+    }
+
+    @if (activeFilterLabel()) {
+      <div class="task-board-filter" id="taskBoardFilter">
+        <p id="taskBoardFilterText">Filtering by: {{ activeFilterLabel() }}</p>
+        <button id="clearTaskBoardFilterBtn" (click)="clearPriorityFilter()">
+          Clear filter
+        </button>
+      </div>
+    }
   </header>
 
   <div class="task-board-columns" id="taskBoardColumns">
@@ -31,8 +42,6 @@
               [availableColumns]="columns()"
               (moveRequested)="onMoveRequested($event)"
             />
-          } @empty {
-            <p class="task-board-empty">No tasks in this column.</p>
           }
         </div>
       </section>

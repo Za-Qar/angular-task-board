@@ -31,6 +31,9 @@
 
     @if (isExpanded()) {
       <div class="task-card-details" [id]="'taskCardDetails' + (task?.id ?? '')">
+        <p [id]="'taskPriority' + (task?.id ?? '')">
+          <strong>Priority:</strong> {{ task?.priorityLevel }}
+        </p>
         <p><strong>Created:</strong> {{ formattedCreatedAt() }}</p>
         <p><strong>Description:</strong> {{ task?.description || 'No description' }}</p>
         <p><strong>Assignee:</strong> {{ task?.assignee || 'Unassigned' }}</p>

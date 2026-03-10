@@ -124,6 +124,7 @@ export class TaskCardComponent implements OnInit, OnChanges {
     }
   }
 
+  // AI assistance
   private isTaskOverdue(task: ITask | null): boolean {
     if (!task) {
       return false;
